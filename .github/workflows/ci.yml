@@ -28,6 +28,10 @@ jobs:
             mingw-w64-x86_64-ninja
             mingw-w64-x86_64-cmake
 
+      - name: Setup Ninja (Linux)
+        if: runner.os == 'Linux'
+        uses: seanmiddleditch/gha-setup-ninja@master
+
       - name: Build for ${{ matrix.os }}
         run: |
           python3 tools/ci-build.py
