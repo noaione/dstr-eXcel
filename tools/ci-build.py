@@ -26,7 +26,9 @@ def prepare():
 
 def find_executable() -> Optional[Path]:
     executable = None
-    for exec in (build_dir / "src").glob("*"):
+    all_paths = list((build_dir / "src").glob("*"))
+    print(all_paths)
+    for exec in all_paths:
         if exec.name.startswith("eXcelSystem"):
             executable = exec
             break
