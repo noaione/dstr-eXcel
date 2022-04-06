@@ -51,6 +51,7 @@ build/
 build64/
 dist/
 dist64/
+target/
 
 ### CMake Patch ###
 # External projects
