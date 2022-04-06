@@ -4,7 +4,7 @@
 
 Date Date::now() {
     Date date;
-    std::chrono::time_point current = std::chrono::system_clock::now();
+    std::chrono::time_point<std::chrono::system_clock> current = std::chrono::system_clock::now();
     std::time_t t_c = std::chrono::system_clock::to_time_t(current);
     std::tm* now = std::localtime(&t_c);
     date.day = now->tm_mday;
