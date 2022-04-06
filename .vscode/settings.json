@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.vpy": "python",
+        "*.pseudo": "pseudocode",
+        "chrono": "cpp"
+    }
+}

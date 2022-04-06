@@ -1,1 +1,1 @@
-tools/*.py export-ignore
+*.py python export-ignore
