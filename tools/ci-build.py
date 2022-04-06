@@ -46,7 +46,8 @@ def build(extra_flags: List[str] = [], debug_mode: bool = False, output_name: st
     executable = find_executable()
     if not executable:
         raise Exception("Failed to build the project, no exe found")
-    output_name += ".exe"
+    if os_name == "nt":
+        output_name += ".exe"
     output_target = target_dir / output_name
     print(executable, "->", output_target)
     shutil.copy(executable, output_target)
