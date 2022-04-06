@@ -26,11 +26,9 @@ jobs:
           update: true
           install: >-
             base-devel
-            mingw-w64-x86_64-ninja
             mingw-w64-x86_64-cmake
 
-      - name: Setup Ninja (Linux)
-        if: runner.os == 'Linux'
+      - name: Setup Ninja
         uses: seanmiddleditch/gha-setup-ninja@master
 
       - name: Build for ${{ matrix.os }}
