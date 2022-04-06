@@ -1,0 +1,38 @@
+cmake_minimum_required(VERSION 3.1)
+
+# Project name and a few useful settings. Other commands can pick up the results
+project(
+    eXcelSystem
+    VERSION 0.1
+    DESCRIPTION "A tutor management system for eXcel Tuition Centre"
+    LANGUAGES CXX)
+
+option(DEBUG_MODE "DebugMode" OFF)
+option(ARRAY_STRUCT "ArrayStruct" OFF)
+set(APP_NAME "eXcelSystem")
+
+# Source code
+add_subdirectory(src)
+
+if(DEBUG_MODE)
+    message(STATUS "Building with Debug flags")
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDEBUG")
+    set(APP_NAME "${APP_NAME}_DEBUG")
+    set_target_properties(eXcelSystem PROPERTIES OUTPUT_NAME "${APP_NAME}")
+endif()
+if (ARRAY_STRUCT)
+    message(STATUS "Building Array Struct Version")
+    SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -DARRAY_STRUCT")
+    set(APP_NAME "${GAME_NAME}_array")
+    set_target_properties(eXcelSystem PROPERTIES OUTPUT_NAME "${GAME_NAME}")
+else()
+    message(STATUS "Building Array Struct Version")
+    SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS}")
+    set(APP_NAME "${GAME_NAME}_linkedlist")
+    set_target_properties(eXcelSystem PROPERTIES OUTPUT_NAME "${GAME_NAME}")
+endif()
+
+SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -O1 -s")
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
