@@ -79,3 +79,8 @@ target/
 # Support for Project snippet scope
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,visualstudiocode,cmake
+
+# Data files
+excel_tutors.txt
+excel_subjects.txt
+excel_centers.txt
