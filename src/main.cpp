@@ -1,5 +1,7 @@
 #include <iostream>
-#include "linkedlist/impl.hpp"
+
+#include "impl/linkedlist.hpp"
+#include "impl/arraystruct.hpp"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
