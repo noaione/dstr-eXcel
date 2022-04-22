@@ -10,7 +10,7 @@ if target_dir.exists():
     shutil.rmtree(target_dir, ignore_errors=True)
 target_dir.mkdir(parents=True, exist_ok=True)
 
-base_execute = ["cmake", "..", "-G", "Ninja"]
+base_execute = ["cmake", "..", "-G", "Ninja", "-DCMAKE_CXX_COMPILER=g++", "-DCMAKE_C_COMPILER=gcc"]
 os_name = os.name
 
 
