@@ -5,7 +5,7 @@
 
 template <class T>
 ArrayStruct<T>::ArrayStruct() {
-    this->_internalArray = std::array<T, MAXIMUM_SIZE>{};
+    this->_internalArray = std::array<T, 100>{};
 }
 
 template <class T>
