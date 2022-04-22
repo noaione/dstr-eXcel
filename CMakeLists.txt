@@ -6,6 +6,7 @@ project(
     VERSION 0.1
     DESCRIPTION "A tutor management system for eXcel Tuition Centre"
     LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
 
 option(DEBUG_MODE "DebugMode" OFF)
 option(ARRAY_STRUCT "ArrayStruct" OFF)

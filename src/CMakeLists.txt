@@ -1,5 +1,5 @@
 add_executable(eXcelSystem main.cpp)
-target_compile_features(eXcelSystem PUBLIC cxx_std_17)
+target_compile_features(eXcelSystem PRIVATE cxx_std_17)
 
 # Implementation Library
 add_library(IMPL_ARR STATIC impl/arraystruct.cpp)
