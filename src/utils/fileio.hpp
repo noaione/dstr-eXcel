@@ -1,5 +1,5 @@
-#ifndef EXCEL_FILEIO_HPP
-#define EXCEL_FILEIO_HPP
+#ifndef EXCEL_UTILS_FILEIO_HPP
+#define EXCEL_UTILS_FILEIO_HPP
 
 #include <string>
 #include <vector>
@@ -9,4 +9,4 @@ void saveData(std::string data, std::string path);
 std::string readData(std::string path) ;
 std::vector<std::string> readDataPerLine(std::string path);
 
-#endif /* EXCEL_FILEIO_HPP */
+#endif /* EXCEL_UTILS_FILEIO_HPP */

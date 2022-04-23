@@ -12,12 +12,12 @@ add_library(TYPES_DATE STATIC types/date.cpp)
 add_library(TYPES_SUBJECT STATIC types/subject.cpp)
 
 # Utilities and other
-add_library(BASE_UTIL STATIC utils.cpp)
-add_library(BASE_FILEIO STATIC fileio.cpp)
+add_library(UTILS_FILEIO STATIC utils/fileio.cpp)
+add_library(UTILS_UTIL STATIC utils/utils.cpp)
 
 # Link libraries
 target_link_libraries(
-    eXcelSystem BASE_UTIL BASE_FILEIO
+    eXcelSystem UTILS_FILEIO UTILS_UTIL
 )
 target_link_libraries(
     eXcelSystem TYPES_CENTER TYPES_DATE TYPES_SUBJECT
