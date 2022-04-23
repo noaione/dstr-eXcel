@@ -3,7 +3,7 @@
 #include <string>
 
 #include "subject.hpp"
-#include "../utils.hpp"
+#include "../utils/utils.hpp"
 
 // Top implement
 Subject::Subject() {
