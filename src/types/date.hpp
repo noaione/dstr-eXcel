@@ -8,6 +8,8 @@ typedef struct Date {
 
 public:
     static Date now();
+    std::string fmt(std::string str);
+    std::string toString();
 } Date;
 
 #endif /* EXCEL_TYPES_DATE_HPP */
