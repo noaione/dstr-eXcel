@@ -13,11 +13,12 @@ add_library(TYPES_SUBJECT STATIC types/subject.cpp)
 
 # Utilities and other
 add_library(UTILS_FILEIO STATIC utils/fileio.cpp)
+add_library(UTILS_MENU STATIC utils/menu.cpp)
 add_library(UTILS_UTIL STATIC utils/utils.cpp)
 
 # Link libraries
 target_link_libraries(
-    eXcelSystem UTILS_FILEIO UTILS_UTIL
+    eXcelSystem UTILS_FILEIO UTILS_MENU UTILS_UTIL
 )
 target_link_libraries(
     eXcelSystem TYPES_CENTER TYPES_DATE TYPES_SUBJECT
