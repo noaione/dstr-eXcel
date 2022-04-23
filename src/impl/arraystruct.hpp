@@ -13,20 +13,21 @@ private:
 
 public:
     ArrayStruct();
-    void insert(T data) override;
-    void insert(T data, int index) override;
-    void insert(T data, bool (*comparator)(T*, T*)) override;
-    void remove(T data) override;
-    void remove(T data, bool (*comparator)(T*, T*)) override;
-    void remove(int index) override;
+    void insert(T data);
+    void insert(T data, int index);
+    void insert(T data, bool (*comparator)(T*, T*));
+    void remove(T data);
+    void remove(T data, bool (*comparator)(T*, T*));
+    void remove(int index);
 
-    T get() override;
-    T get(int index) override;
-    long int getCount() override;
+    T get();
+    T get(int index);
+
+    long int getCapacity();
 
     // iteration stuff
-    T next() override;
-    void resetIndex() override;
+    T next();
+    void resetIndex();
 };
 
 #endif /* EXCEL_IMPL_ARRSTRUCT_HPP */

@@ -4,7 +4,7 @@
 template <class T> class Iterable
 {
 private:
-    long long int _index;
+    long int _index;
     long int _count;
 public:
     virtual void init();
@@ -17,7 +17,10 @@ public:
 
     virtual T get();
     virtual T get(int index);
+
     virtual long int getCount();
+    virtual long int getCapacity();
+    virtual long int getIndex();
 
     // iteration stuff
     virtual T next();

@@ -37,6 +37,19 @@ T Iterable<T>::get(int index) {
 }
 
 template <class T>
+long int Iterable<T>::getCount() {
+    return this->_count;
+}
+template <class T>
+long int Iterable<T>::getCapacity() {
+    return 0;
+}
+template <class T>
+long int Iterable<T>::getIndex() {
+    return this->_index;
+}
+
+template <class T>
 T Iterable<T>::next() {
     return NULL;
 }

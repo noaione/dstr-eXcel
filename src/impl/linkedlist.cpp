@@ -37,7 +37,7 @@ void Node<T>::detach() {
 
 template <class T>
 LinkedList<T>::LinkedList() {
-    head = tail = curr = NULL;
+    this->head = this->tail = this->curr = NULL;
 }
 
 template <class T>
@@ -120,4 +120,127 @@ void LinkedList<T>::insert(T data, int index) {
         }
     }
     this->_count++;
+}
+
+template <class T>
+void LinkedList<T>::popHead() {
+    if (this->head && this->head == this->tail) {
+        this->head = this->tail = NULL;
+        delete this->head;
+    } else {
+        Node<T> *headC = this->head->next;
+        this->head->next = headC->prev = NULL;
+        delete this->head;
+        this->head = headC;
+    }
+}
+template <class T>
+void LinkedList<T>::popTail() {
+    if (this->head && this->head == this->tail) {
+        this->head = this->tail = NULL;
+        delete this->head;
+    } else {
+        Node<T> *tailC = this->tail->prev;
+        this->tail->prev = tailC->next = NULL;
+        delete this->tail;
+        this->tail = tailC;
+    }
+}
+
+template <class T>
+bool simpleCompare(T* a, T* b) {
+    if (*a == *b) {
+        return true;
+    }
+    return false;
+}
+
+template <class T>
+void LinkedList<T>::remove(T data, bool (*comparator)(T*, T*)) {
+    int index = 0;
+    if (!this->head) {
+        return;
+    } else if (comparator(this->tail->data, data)) {
+        this->popHead();
+    } else if (comparator(this->tail->data, data)) {
+        this->popTail();
+    } else {
+        this->curr = this->head;
+        while (curr && comparator(this->curr->data, data)) {
+            this->curr = this->curr->next;
+            index++;
+        }
+
+        // check if curr is empty.
+        if (!this->curr) {
+            return;
+        }
+
+        this->curr->prev->next = this->curr->next;
+        this->curr->next->prev = this->curr->prev;
+
+        this->curr->prev = this->curr->next = NULL;
+        delete this->curr;
+    }
+    this->_count--;
+    if (index > this->_index) {
+        this->_index--;
+    }
+}
+template <class T>
+void LinkedList<T>::remove(T data) {
+    this->remove(data, simpleCompare);
+}
+template <class T>
+void LinkedList<T>::remove(int index) {
+    if (index <= 0) {
+        this->_index--;
+        this->popHead();
+        return;
+    }
+    if (index >= this->_count) {
+        this->popTail();
+        return;
+    }
+
+    int currIdx = 0;
+    this->curr = this->head;
+    while (this->curr->next != NULL) {
+        if (currIdx == index) {
+            this->curr->prev->next = this->curr->next;
+            this->curr->next->prev = this->curr->prev;
+
+            this->curr->prev = this->curr->next = NULL;
+            delete this->curr;
+            break;
+        }
+        currIdx++;
+    }
+    if (index > this->_index) {
+        this->_index--;
+    }
+    this->_count--;
+}
+
+template <class T>
+T LinkedList<T>::get() {
+    return this->curr->data;
+};
+template <class T>
+T LinkedList<T>::get(int index) {
+    return this->curr->data;
+}
+
+template <class T>
+T LinkedList<T>::next() {
+    if (this->curr->next) {
+        this->curr = this->curr->next;
+    } else {
+        return NULL;
+    }
+    return this->curr->data;
+}
+template <class T>
+void LinkedList<T>::resetIndex() {
+    this->_index = 0;
 }
