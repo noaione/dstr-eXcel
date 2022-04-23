@@ -1,6 +1,9 @@
 #include <chrono>
 #include <ctime>
 #include <string>
+#ifdef DEBUG
+#include <iostream>
+#endif
 #include "date.hpp"
 
 Date Date::now() {
@@ -14,30 +17,44 @@ Date Date::now() {
     return date;
 }
 
+std::string replaceUntilNone(std::string source, std::string target, std::string fmtr, bool prepend = false) {
+    size_t index = source.find(fmtr);
+    while (index != std::string::npos) {
+        if (prepend && target.length() == 1) {
+            target = "0" + target;
+        }
+#ifdef DEBUG
+        std::cout << source << "||" << target << "||" << fmtr << "==>" << index << "||" << sizeof(fmtr) << std::endl;
+#endif
+        source = source.replace(index, fmtr.size(), target);
+#ifdef DEBUG
+        std::cout << "!" << source << "||" << target << "||" << fmtr << "==>" << index << std::endl;
+#endif
+        index = source.find(fmtr);
+    }
+#ifdef DEBUG
+    std::cout << "!!!" << std::endl;
+#endif
+    return source;
+}
+
 std::string Date::fmt(std::string str) {
     std::string dateStr;
     dateStr += str;
     std::string dayFmt = std::to_string(this->day);
     std::string mnthFmt = std::to_string(this->month);
-    if (dayFmt.length() == 1 && str.find("mm") != std::string::npos) {
-        dayFmt = "0" + dayFmt;
-    }
-    if (mnthFmt.length() == 1 && str.find("mm") != std::string::npos) {
-        mnthFmt = "0" + mnthFmt;
-    }
-    if (str.find("yyyy") != std::string::npos) {
-        dateStr.replace(dateStr.find("yyyy"), sizeof("yyyy") - 1, std::to_string(year));
-    }
-    if (str.find("dd") != std::string::npos) {
-        dateStr.replace(dateStr.find("dd"), sizeof("dd") - 1, dayFmt);
-    } else if (str.find("d") != std::string::npos) {
-        dateStr.replace(dateStr.find("d"), sizeof("d") - 1, dayFmt);
-    }
-    if (str.find("mm") != std::string::npos) {
-        dateStr.replace(dateStr.find("mm"), sizeof("mm") - 1, mnthFmt);
-    } else if (str.find("m") != std::string::npos) {
-        dateStr.replace(dateStr.find("m"), sizeof("m") - 1, mnthFmt);
-    }
+    std::string yearFmt = std::to_string(this->year);
+#ifdef DEBUG
+    std::cout << str << std::endl;
+#endif
+    dateStr = replaceUntilNone(dateStr, yearFmt, "yyyy");
+    dateStr = replaceUntilNone(dateStr, dayFmt, "dd", true);
+    dateStr = replaceUntilNone(dateStr, dayFmt, "d");
+    dateStr = replaceUntilNone(dateStr, mnthFmt, "mm", true);
+    dateStr = replaceUntilNone(dateStr, mnthFmt, "m");
+#ifdef DEBUG
+    std::cout << std::endl;
+#endif
     return dateStr;
 }
 
